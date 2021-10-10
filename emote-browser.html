@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Security-Policy"
+              content="default-src *  data: blob: 'unsafe-inline' 'unsafe-eval'; 
+                       script-src * data: blob: 'unsafe-inline' 'unsafe-eval'; 
+                       connect-src * data: blob: 'unsafe-inline'; 
+                       img-src * data: blob: 'unsafe-inline'; 
+                       frame-src * data: blob: ; 
+                       style-src * data: blob: 'unsafe-inline';
+                       font-src * data: blob: 'unsafe-inline';">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Twitch Emote Lookup v1.0</title>
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600,800|Roboto+Mono" rel="stylesheet">
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+        <style>
+            body {
+                font-family: 'Open Sans', sans-serif;
+                font-size:12px;
+                margin:0px;
+                padding:0px;
+            }
+            .emote {
+                display:inline-block;
+                margin:30px;
+                width:112px;
+                height:112px;
+            }
+            .caption { 
+                text-align: center;
+                font-size:.7rem;
+                color: rgb(140,140,140);
+                letter-spacing: .5px;
+                margin-top:.25rem;
+                font-family:'Roboto Mono';
+            }
+            .search-field {
+                display:inline-block;
+                width:100%;
+            }
+            .search-field input {
+                display:inline-block;
+                border: none;
+                font-size:1.25rem;
+                border-bottom: 2px solid rgb(131, 78, 255);
+                background-color:rgba(142, 93, 255, 0.075);
+                border-radius:4px 4px 0px 0px;
+                height:50px;
+                width:100%;
+                outline:0;
+                padding-left: .5rem;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+            }
+
+            .search-field input:focus {
+                background-color:rgba(142, 93, 255, 0.13);
+            }
+            .search-field input::placeholder {
+                color: rgb(192, 169, 247);
+            }
+
+            button {
+                border: none;
+                border-radius:4px;
+                padding: .7rem 1rem;
+                margin-top: 1rem;
+                float:right;
+                text-decoration: none;
+                background: rgb(131, 78, 255);
+                color: #ffffff;
+                font-family: sans-serif;
+                font-size: .9rem;
+                letter-spacing: .05rem;
+                cursor: pointer;
+                text-align: center;
+                transition: background 250ms ease-in-out, 
+                            transform 150ms ease;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+            }
+
+            button:hover,
+            button:focus {
+                background: rgb(115, 63, 236);
+            }
+
+            button:focus {
+                outline: 1px solid #fff;
+                outline-offset: -4px;
+            }
+
+            button:active {
+                transform: scale(0.99);
+            }
+            #sidebar {
+                width:260px;
+                height: 100vh;
+                padding:20px;
+                padding-top:140px;
+                background-color: rgb(243, 243, 243);
+                position: fixed;
+                margin-bottom:20px;
+            }
+            .username {
+                font-size: .8rem;
+                font-weight: 600;
+                margin-bottom: 10px;
+                text-transform:uppercase;
+                letter-spacing: .5px;
+                display:block;
+                color: rgb(154, 144, 177);
+            }
+            #response {
+                padding-top: 40px;
+                padding-left: 320px;
+            }
+            #error { 
+                font-size: 1rem;
+                font-weight: 800;
+                color:red;
+            }
+            #title {
+                position:absolute;
+                top:10px;
+                left:14px;
+                font-family: 'Roboto Mono';
+                color:rgb(131, 131, 131);
+            }
+            #title-text {
+                position:absolute;
+                left: 42px;
+                width: 200px;
+                top: 10px;
+            }
+
+            #title svg {
+                width: 24px;
+                height: 24px;
+                margin: 8px;
+                position:absolute;
+            }
+
+            .response-title{
+                font-size: 3rem;
+                color:rgb(115, 63, 236);
+                margin:20px;
+                font-weight: 300;
+                margin-left:30px;
+                text-transform: capitalize;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='sidebar'>
+            <div id='title'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124.11 144.45"><defs><style>.cls-1{fill:#942eff;}</style></defs><title>Asset 4</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-1" x="56.1" y="28.6" width="10.08" height="31.44"/><rect class="cls-1" x="85.76" y="28.6" width="10.08" height="31.44"/><path class="cls-1" d="M23,0,0,23v94.63H25.46v26.81l26.81-26.81H78.08l46-46V0ZM114.9,67.79,95.65,87H69.84L51.45,105.43V87H29.51V9.21H114.9Z"/></g></g></svg>
+                <div id='title-text'>Twitch Emote Lookup v1.0</div>
+            </div>
+            <div class='username'>Channel name</div>
+            <div class='search-field'>
+                <input type="text" name="user" id='user-input' placeholder="Enter a channel name.">
+                <button onclick="handleClick()">Submit</button>
+            </div>
+        </div>
+        <div id='response'></div>
+        <script>
+            function handleClick() {
+                $('#response').empty();
+                $('#error').remove();
+                let user = document.getElementById("user-input").value;
+                
+                $.ajax({
+                    url: `https://api.twitch.tv/api/channels/${user}/product`,
+                    headers: {
+                        'Client-ID': '8owmvlvk7brkm1zzjt2l6di9o604l8',
+                    },
+                    type: 'GET',
+                    dataType: 'json',
+                    processData: false,
+                    success: function (data) {
+                        $('#response').append(`<div class='response-title'>${user}</div>`);
+                        let emotes = data.plans.reduce((p, n) => p.concat(n.emoticons), []);
+                        let URLs = emotes.forEach(function(emote){
+                            let origURL = emote.url;
+                            let url = origURL.substring(0,origURL.length-3)+'4.0';
+                            let regex = emote.regex;
+                            $('#response').append(`
+                                <div class="emote">
+                                    <img title='${regex}' src=${url} onerror="this.onerror=null;this.src='default.png'">
+                                    <div class='caption'>${regex}</div>
+                                </div>
+                            `);
+                        });
+                    },
+                    error: function(){
+                        $('#sidebar').append(`
+                            <div id="error" style='display:inline-block'>
+                                User not found!
+                            </div>
+                        `);
+                    }
+                });
+            }
+        </script>
+        <script>
+            document.getElementById('user-input').addEventListener('keydown', function onEvent(event) {
+                $('#error').remove();
+                if (event.key === "Enter") {
+                    handleClick();
+                    return false;
+                }
+            });
+        </script>
+    </body>
+</html>
