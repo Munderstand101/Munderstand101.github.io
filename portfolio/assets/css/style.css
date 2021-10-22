@@ -1,0 +1,46 @@
+/**************************************
+	Css Table of Content
+ *************************************/
+ 
+/*01.Generale Style*/
+@import "Generale.css";
+
+/*02.Preloader Style*/
+/* @import "Preloader.css"; */
+
+/*03.Navber Area Style*/
+@import "Navbar.css"; 
+
+/*04.Home Section Style*/
+/* @import "Home.css"; */
+
+/*05.About Section Style*/
+@import "About.css";
+
+/* 06.Resume Section Style */
+/* @import "Resume.css";  */
+@import "Resume2.css";
+
+/* 07.Services Section Style */
+/* @import "Services.css";  */
+
+/* 08.Counter Section Style */
+/* @import "Counter.css";  */
+
+/* 09.Portfolio Section Style */
+/* @import "Portfolio.css";  */
+
+/* 10.Hire Section Style */
+/* @import "Hire.css";  */
+
+/* 11.Testimonials Section Style */
+/* @import "Testimonials.css";  */
+
+/* 12.Blog Section Style */
+/* @import "Blog.css";  */
+
+/* 13.Contact Section Style */
+/* @import "Contact.css";  */
+
+/* 14.Footer Section Style */
+ @import "Footer2.css";

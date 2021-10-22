@@ -1,0 +1,51 @@
+
+.footer-area {
+	background: #1b1b1b;
+	padding: 100px 0;
+}
+
+.footer {
+	padding: 60px 0;
+	position: relative;
+	color: #adb5bd;
+	font-size: 15px
+}
+
+.footer.footer-bar {
+	padding: 30px 0;
+	border-top: 1px solid #4e555d;
+}
+
+
+
+
+
+.social-icon li a {
+	color: #adb5bd;
+	border: 1px solid #adb5bd;
+	display: inline-block;
+	height: 32px;
+	text-align: center;
+	font-size: 15px;
+	width: 32px;
+	line-height: 30px;
+	-webkit-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+	border-radius: 7px
+}
+
+.social-icon li a:hover {
+	background-color: #e54b4b;
+	border-color: #e54b4b !important;
+	color: #fff !important
+}
+
+.social-icon.social li a {
+	color: #161c2d;
+	border-color: #161c2d
+}
+
+
+.bg-dark {
+	/* background-color: #3c4858 !important */
+}

@@ -1,0 +1,80 @@
+/**************************************
+ * 06.Resume Section Style
+ *************************************/
+.resume-area {
+	background-color: #f9f9fa;
+	position: relative;
+	z-index: 1;
+	color: #fff;
+	background: url(../img/banner-bg.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+.resume-area::after {
+	position: absolute;
+	top: 0;
+	content: "";
+	left: 0px;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	opacity: .9;
+	z-index: -1;
+	background: rgba(40, 44, 50, 0.7);
+}
+
+.skill-title h5 {
+	color: #fff;
+	position: relative;
+	font-weight: 700;
+	margin-bottom: 30px;
+	padding-bottom: 20px;
+	display: inline-block;
+	border-bottom: 1px solid #fff;
+}
+.skill-title h5:after {
+	content: '';
+	width: 70px;
+	height: 1px;
+	background: #f56045;
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+}
+.mb-50 {
+	margin-bottom: 50px;
+}
+.mb-35 {
+	margin-bottom: 35px;
+}
+.skill-item-info h6 {
+	color: #fff;
+	font-weight: 600;
+	font-size: 18px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.skill-item-info p {
+	color: #fff;
+}
+.resume-area .skill-items .skill-item-info h6 em {
+	float: right;
+	font-size: 12px;
+	font-style: normal;
+}
+.resume-area .skills-progress {
+	width: 100%;
+	height: 2px;
+	background: #eee;
+	margin: 15px 0 0;
+}
+.skills-progress span {
+	height: 100%;
+	width: 0%;
+	background-color: #f56045;
+	display: block;
+	-webkit-transition: all 1.5s;
+	transition: all 1.5s;
+}

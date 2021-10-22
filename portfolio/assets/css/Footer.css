@@ -1,0 +1,49 @@
+
+/**************************************
+ * 14. Footer Section Style
+ *************************************/
+.footer-area {
+	background: #1b1b1b;
+	padding: 100px 0;
+}
+
+.footer-social {
+	margin-bottom: 20px;
+}
+
+.footer-social li {
+	margin-right: 10px;
+	display: inline-block;
+}
+
+.footer-social li a {
+	color: #fff;
+	font-size: 15px;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 3px;
+	border: 1px solid transparent;
+	background: rgb(37, 37, 37);
+	display: block;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+.footer-social li a:hover {
+	background: #f56045;
+	border-color: #f56045;
+	color: #fff;
+}
+.copyright-area {
+}
+
+.copyright-area p {
+	color: #fff;
+	font-size: 14px;
+	text-transform: capitalize;
+}
+
+.copyright-area p a {
+	color: #f56045;
+	font-weight: 600;
+}

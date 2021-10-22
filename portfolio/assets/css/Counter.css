@@ -1,0 +1,60 @@
+/**************************************
+ * 08.Counter Section Style
+ *************************************/
+.counter-area {
+	text-align: center;
+	background-color: #f9f9fa;
+	position: relative;
+	z-index: 1;
+	color: #fff;
+	text-align: center;
+	background: url(../img/banner-bg-2.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	padding: 120px 0;
+}
+.counter-area::after {
+	position: absolute;
+	top: 0;
+	content: "";
+	left: 0px;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	opacity: .9;
+	z-index: -1;
+	background: rgba(40, 44, 50, 0.7);
+}
+
+.gradient-after::after {
+	position: absolute !important;
+	top: 0;
+	content: "";
+	left: 0px;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	opacity: .7 !important;
+	z-index: -1;
+	background: #641ff1;
+	background: -webkit-linear-gradient(to right, #641ff1, #a43bff) !important;
+	background: linear-gradient(to right, #641ff1, #a43bff) !important;
+}
+.counter-contents h2 {
+	color: #fff;
+	font-size: 38px;
+	font-weight: 700;
+	margin-bottom: 10px;
+	word-spacing: -10px;
+}
+.counter-contents h3 {
+	color: #fff;
+	font-size: 18px;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+
+

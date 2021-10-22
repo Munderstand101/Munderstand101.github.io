@@ -1,0 +1,50 @@
+/**************************************
+ * 05. About Section Style
+ *************************************/
+.about-image {
+	position: relative;
+	padding-right: 30px;
+	margin-bottom: 15px;
+}
+.about-image:after {
+	content: '';
+	width: calc(100% - 30px);
+	height: 100%;
+	border: 1px solid #eee;
+	border-radius: 5px;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+.about-image img {
+	border-radius: 5px;
+}
+.about-content {
+	padding-right: 0px;
+}
+
+.about-content h3 {
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 2px;
+	margin-bottom: 10px;
+}
+.about-content h2 {
+	font-size: 28px;
+	font-weight: 900;
+	margin-bottom: 10px;
+	letter-spacing: 2px;
+}
+.about-cv-info p {
+	margin-bottom: 10px;
+}
+.about-cv-info p:last-child {
+	margin-bottom: 0px;
+}
+.about-cv-info p strong {
+	width: 20%;
+	display: inline-block;
+}
+.color-text {
+	color: #f56045;
+}
